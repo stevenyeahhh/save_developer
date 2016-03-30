@@ -8,5 +8,5 @@ Los encargados de mantener, y desarrollar el código fuente de SAVE, son:
 - Emmanuel Camacho Orozco
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-Este archivo es generado el día 9 de marzo de 2016
+Este repositorio es generado el día 9 de marzo de 2016
 -----------------------------------------------------------------------------------------------------------------------------------------
