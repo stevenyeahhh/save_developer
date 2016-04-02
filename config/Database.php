@@ -5,8 +5,8 @@ class Database extends PDO {
     private $columns;
 
     function __construct() {
-//        parent::__construct(DB_ROUTE, DB_USER,DB_PASSWORD , array(
-//            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',));
+        parent::__construct(DB_ROUTE, DB_USER,DB_PASSWORD , array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',));
     }
 
     function selectQuery($table, $columns, $where) {
