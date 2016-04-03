@@ -15,10 +15,9 @@ class Database extends PDO {
 //            var_dump($e);
         }
     }
-
     function selectQuery($table, $columns, $where) {
+        //echo "SELECT $columns FROM $table $where";
         $where = trim($where) == "" ? "" : " WHERE $where";
-//        echo "SELECT $columns FROM $table $where";
         return parent::query("SELECT $columns FROM $table $where");
     }
 

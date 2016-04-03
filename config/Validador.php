@@ -27,7 +27,6 @@ class Validador {
     }
 
     public function validarServidor() {
-//        var_dump($this->campos);
         
         $isValid = false;
         foreach ($this->campos as $key => $value) {

@@ -37,21 +37,6 @@ class IndexController extends Controller {
         $this->view->renderize($renderize);
         
         
-//        $this->view->setTitle("Reg?trate");//T?ulo de la p?ina (se muestra como el t?ulo de pesta? y como h1 de la vista)
-//        Poner campos que se van a validar en formato de jquery validatos
-//        $validar = $this->validar(array_merge(array(
-//            'direccion' => array('required' => true),
-//            'telefono' => array('required' => true, 'number' => true),
-//        )));
-//        $this->view->setValidacion($validar->getCamposJSON());//Esto es obligatorio, para que la vista los cargue en la validaci? l?ea 139 de views/layout/header.phtml
-//          if ($_POST) {
-//            $validar->setValores($_POST);//poner los valores del submit
-//            if ($validar->validarServidor()) {}//Validaci? desde el servidor, cuando se hace submit
-//          }
-//          $this->view->setJs(array('lib'));//Funci? para cargar scripts de javascript, deben estar en views/[nombre del controlador, en este ejemplo index]/js/[script].js
-//        $this->view->renderize('registrar');//Funci? para mostrar vistas, deben estar en views/[nombre del controlador, en este ejemplo index]/[nombre vista a renderizar]
-        //$this->crearMenu($menu2, "index/reporte", "Reporte");//Añade opción al menú superior, para el lateral ir a config/controller.php orden : [controlador]/[función controlador], "Nombre a mostrar en el menú"
-
     }
     
 //    public function desactivarIndex() {
