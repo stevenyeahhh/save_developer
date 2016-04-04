@@ -1,0 +1,21 @@
+<form method='post' role='form'> 
+    <table class="table table-striped table-responsive">
+        <tr>
+            <th>Seleccione</th>
+            <th>Imagen</th>
+            <th>Fecha inscripciòn</th>
+        </tr>
+    <?php
+    foreach ($this->params[candidatos] as $key => $value) {
+        ?>
+        <tr>
+            <td><input class="form-group" type='radio' value="<?=$value["id_usuario"]?>" name="idUsuario" title="Seleccione un candidato "/></td>
+            <td><img width="200" src="<?=BASE.'img/candidatos/'.$value["imagen"]?>"/></td>
+            <td><?=$value["fecha_inscripcion"]?></td>
+        </tr>
+        <?php
+    }
+    ?>
+    </table>
+    <input class="btn btn-info" type='submit' value='Votar'/>
+</form>

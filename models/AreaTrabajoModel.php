@@ -29,5 +29,9 @@ class AreaTrabajo {
     public function getAreaTrabajoPorId($id) {
         return Singleton::getInstance()->db->selectQuery("SELECT id_area_trabajo, nombre FROM area_trabajo WHERE id_area_trabajo = '$id'");
     }
-
+    public function insertAreaTrabajo() {
+        return $this->getDb()->insertQuery("AREA_TRABAJO", 
+                "id_area_trabajo, nombre ", 
+                "'$this->idAreaTrabajo','$this->nombre'");
+    }
 }

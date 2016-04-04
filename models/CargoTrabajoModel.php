@@ -11,7 +11,7 @@
  *
  * @author Emmanuel
  */
-class CargoTrabajoModel {
+class CargoTrabajoModel extends Model{
 
     private $idCargoTrabajo;
     private $idAreaTrabajo;
@@ -24,7 +24,7 @@ class CargoTrabajoModel {
     }
 
     public function selectCargoTrabajoList() {
-        return $this->getDb()->query("SELECT id_cargo_trabajo, id_area_trabajo, nombre FROM cargo_trabajo");
+        return $this->getDb()->query("SELECT id_cargo_trabajo, id_area_trabajo, nombre FROM CARGO_TRABAJO");
     }
 
     public function getCargoTrabajoPorId($id) {
@@ -33,6 +33,11 @@ class CargoTrabajoModel {
 
     public function getCargoTrabajoPorIdAreaTrabajo($idAreaTrabajo) {
         return Singleton::getInstance()->db->selectQuery("SELECT id_cargo_trabajo, id_area_trabajo, nombre FROM cargo_trabajo WHERE id_area_trabajo = '$idAreaTrabajo'");
+    }
+    public function insertCargoTrabajo() {
+        return $this->getDb()->insertQuery("CARGO_TRABAJO", 
+                "id_cargo_trabajo, id_area_trabajo, nombre ", 
+                "'$this->idCargoTrabajo','$this->idAreaTrabajo','$this->nombre'");
     }
 
 }

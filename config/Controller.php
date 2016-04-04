@@ -14,27 +14,18 @@ abstract class Controller {
             $this->view->setMsgBienvenida($this->getSesionVar("ROL") . " : " . $this->getSesionVar("NOMBRE") . " " . $this->getSesionVar("APELLIDO"));
             switch ($this->getRol()) {
                 case ROL_ADMINISTRADOR:
-                    $this->crearMenu($menu, "usuario/consultarUsuarios", 'Usuarios');
-                    $this->crearMenu($menu, "preguntas/crearPreguntas", 'Preguntas');
-                    $this->crearMenu($menu, "tipoMedicamento/consultarTipoMedicamentos", 'Tipos de Medicamentos');
-                    $this->crearMenu($menu, "bodega/consultarBodegas", 'Bodega');
-                    $this->crearMenu($menu, "medicamento/consultarMedicamentos", 'Medicamentos');
-                    $this->crearMenu($menu, "empresa/consultarEmpresas", 'Empresas');
-                    $this->crearMenu($menu, "pedido/consultarPedidos", 'PEDIDOS');
+                    $this->crearMenu($menu, "administrador/registrarUsuarioSecundario", 'Registrar usuario secundario');
+                    $this->crearMenu($menu, "administrador/listarUsuarios", 'Listar usuarios');                    
                     break;
-                case ROL_REPARTIDOR:
-                    $this->crearMenu($menu, "repartidor/consultarPedidosAsignados", 'Pedidos asignados');
-
-                    break;
-                case ROL_CLIENTE:
-                    $this->crearMenu($menu, "cliente/consultarPedidos", 'PEDIDOS');
-                    break;
+                case ROL_USUARIO_SECUNDARIO:
+                    $this->crearMenu($menu, "usuarioSecundario/listarEleccionesActivas", 'Listar elecciones activas');                    
+                    break;                
                 default:
                     break;
             }
-            $this->crearMenu($menu, "usuario/consultar", 'Consulta de datos');
-            $this->crearMenu($menu, "usuario/modificar", 'Modificar datos');
-            $this->crearMenu($menu, "usuario/eliminar", 'Eliminar cuenta');
+//            $this->crearMenu($menu, "usuario/consultar", 'Consulta de datos');
+//            $this->crearMenu($menu, "usuario/modificar", 'Modificar datos');
+//            $this->crearMenu($menu, "usuario/eliminar", 'Eliminar cuenta');
             $this->crearMenu($menu, "usuario/cerrarSesion", 'Cerrar sesiÃ³n ');
             $this->view->setMenu($menu);
         }
@@ -50,8 +41,7 @@ abstract class Controller {
     }
 
     public function sesionIniciada() {
-
-        return isset($_SESSION['IDENTIFICADOR']);
+        return isset($_SESSION['idUsuario']);
     }
 
     public function getSesionVar($name) {
@@ -63,7 +53,7 @@ abstract class Controller {
     }
 
     public function getRol() {
-        return $_SESSION["ID_ROL"];
+        return $_SESSION["idRol"];
     }
 
     public function crearMenu(&$menu, $url, $descripcion) {
@@ -103,8 +93,8 @@ abstract class Controller {
 
     public function exportExcel($data, $title, $filename) {
         /**
-         * Función para exportar a excel a partir de un excel
-         * @param array $data <b>Arreglo con la información que va a ir en el excel
+         * Funciï¿½n para exportar a excel a partir de un excel
+         * @param array $data <b>Arreglo con la informaciï¿½n que va a ir en el excel
          * </b>
          */
         $hoy = new DateTime();
@@ -146,7 +136,8 @@ abstract class Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
     }
+    public function redirigir($url) {
+        echo "<script>window.location.href='$url'</script>";
+    }
 
 }
-
-?>

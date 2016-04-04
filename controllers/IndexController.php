@@ -1,42 +1,54 @@
-﻿<?php
-
+<?php
 class IndexController extends Controller {
     private $usuario;//los modelos se guardan en models/[nombre modelo]
 
-    public function __construct() {
+    public function __construct() {        
         parent::__construct();
         $this->usuario = $this->loadModel("Usuario");//Para iniciar el modelo, ejemplo de uso de módelo, controller/EmpresaController.php
-//        if ($this->sesionIniciada()) {
-//            $this->redirigirARol();
-//        }
+        if ($this->sesionIniciada()) {
+             switch ($_SESSION["idRol"]){
+                case ROL_ADMINISTRADOR:
+                    header("Location:" . BASE .  'administrador');
+                    break;
+                case ROL_USUARIO_SECUNDARIO:
+                    header("Location:" . BASE .  'usuarioSecundario');
+                    break;
+            }
+            
+        }
     }
 
     public function index() {
         $title="Bienvenido a Save";
         $renderize="index";
         $validar = $this->validar(array_merge(array(
-            'nombre_usuario' => array('required' => true),
+            'nombreUsuario' => array('required' => true),
             'contrasena' => array('required' => true),
-        )));
-        $this->view->setValidacion($validar->getCamposJSON());
+        )));        
         if($_POST){
             $validar->setValores($_POST);            
             if ($validar->validarServidor()) {                
-                if($infoUsuario=$this->usuario->inciarSesion($nombre_usuario,$contrasena)->fetchAll(PDO::FETCH_ASSOC)){
-                    $_SESSION["id_usuario"]=$infoUsuario["id_usuario"]; 
-                    header("Location:" . BASE . DS . 'administrador' . DS);
+                extract($_POST);
+//                var_dump($this->usuario->inciarSesion($nombreUsuario,$contrasena)->fetchAll(PDO::FETCH_ASSOC));
+                if($infoUsuario=$this->usuario->inciarSesion($nombreUsuario,$contrasena)->fetch(PDO::FETCH_ASSOC)){
+                    $_SESSION["idUsuario"]=$infoUsuario["id_usuario"]; 
+                    $_SESSION["idRol"]=$infoUsuario["id_rol"]; 
+                    switch ($infoUsuario["id_rol"]){
+                        case ROL_ADMINISTRADOR:
+                            header("Location:" . BASE .  'administrador');
+                            break;
+                        case ROL_USUARIO_SECUNDARIO:
+                            header("Location:" . BASE .  'usuarioSecundario');
+                            break;
+                    }   
                 }else{
                     $this->view->setError("¡No registrado o datos errados!");
-                }                                
+                }        
             }
-            
-        }else{
-            
         }
+        $this->view->setValidacion($validar->getCamposJSON());
         $this->view->setTitle($title);
         $this->view->renderize($renderize);
-        
-        
     }
     
 //    public function desactivarIndex() {
@@ -56,4 +68,3 @@ class IndexController extends Controller {
         
     }
 }
-?>

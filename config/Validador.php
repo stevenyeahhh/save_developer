@@ -26,14 +26,13 @@ class Validador {
         $this->valoresQuitados = $valores;
     }
 
-    public function validarServidor() {
-        
+    public function validarServidor() {        
         $isValid = false;
         foreach ($this->campos as $key => $value) {
             foreach ($value as $validacion => $valor) {
                 if (!array_key_exists($key,$this->valoresQuitados)) {
                     if ($validacion === "required") {
-                        //echo $validacion ."=>".$this->valores[$key]."=>".$key;
+//                        echo $validacion ."=>".$this->valores[$key]."=>".$key;
                         if (!empty($this->valores[$key])) {
                             $isValid = true;
                         } else {

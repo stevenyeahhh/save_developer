@@ -16,13 +16,13 @@ class Database extends PDO {
         }
     }
     function selectQuery($table, $columns, $where) {
-        //echo "SELECT $columns FROM $table $where";
-        $where = trim($where) == "" ? "" : " WHERE $where";
+//        echo "SELECT $columns FROM $table $where";  
+        $where = trim($where) == "" ? "" : " WHERE $where";        
         return parent::query("SELECT $columns FROM $table $where");
     }
 
     function insertQuery($table, $columns, $values) {
-//        echo "INSERT INTO $table ($columns) VALUES ($values)";
+        echo "INSERT INTO $table ($columns) VALUES ($values)";
         $query = parent::query("INSERT INTO $table ($columns) VALUES ($values)");
         return $query;
     }
@@ -38,5 +38,3 @@ class Database extends PDO {
     }
 
 }
-
-?>

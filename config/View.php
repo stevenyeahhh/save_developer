@@ -125,7 +125,11 @@ class View {
                             
                             echo "<input type='checkbox' class='slider-tabla'  " . (( $tablaDatos[$p][$h] == 1) ? "checked" : "") . " value='" . $tablaDatos[$p][0] . "'/>";
                         } else {
-                            echo $tablaDatos[$p][$h]?"SI":"NO";
+                            if(is_numeric($tablaDatos[$p][$h])){
+                                echo $tablaDatos[$p][$h]?"SI":"NO";
+                            }else{
+                                echo $tablaDatos[$p][$h];
+                            }
                         }
                     } else {
                         echo $tablaDatos[$p][$h];
@@ -283,5 +287,3 @@ class View {
     }
 
 }
-
-?>

@@ -30,4 +30,9 @@ class EstadoVotoModel {
         return Singleton::getInstance()->db->selectQuery("SELECT id_estado_voto, nombre FROM estado_voto WHERE id_estado_voto = '$id'");
     }
 
+    public function insertEstadoVoto() {
+        return $this->getDb()->insertQuery("ESTADO_VOTO", 
+                " id_estado_voto, nombre ", 
+                "'$this->idEstadoVoto','$this->nombre'");
+    }
 }

@@ -1,0 +1,48 @@
+<?php //var_dump($this->params);?> 
+<form role="form" method="post"  >        
+    <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input class="form-control" type="text" title="Ingrese nombre" id="nombre" name="nombre" value="<?=$this->params[usuario][nombre]?>"/>
+    </div>
+    <div class="form-group">
+    <label for="apellidos">Apellidos:</label>
+    <input class="form-control" type="text" title="Ingrese apellidos" id="apellidos" name="apellidos" value="<?=$this->params[usuario][apellidos]?>"/>
+    </div>
+    <div class="form-group">
+    <label for="numeroIdentificacion">Número de identificación:</label>
+    <input class="form-control" type="text" title="Ingrese número de identificación" id="numeroIdentificacion" name="numeroIdentificacion" value="<?=$this->params[usuario][numero_identificacion]?>"/>    
+    </div>
+    <div class="form-group">
+    <label for="fechaNacimiento">Fecha nacimiento:</label>
+    <input class="form-control datepick" type="text" readonly="readonly" title="Ingrese fecha nacimiento" id="fechaNacimiento" name="fechaNacimiento" value="<?=$this->params[usuario][fecha_nacimiento]?>" class="date"/>
+    </div>
+    <div class="form-group">
+    <label for="idTipoIdentificacion">Tipo de identificación:</label>
+    <select class="form-control" id="idTipoIdentificacion" name="idTipoIdentificacion" title="Ingrese tipo de identificación">    
+        <?php
+        foreach($this->params[tipoIdentificacion] as $key =>$value){
+            ?><option value="<?=$value["id_tipo_identificacion"]?>"><?=$value["nombre"]?></option><?php
+        }?>
+    </select>
+    </div>
+    <div class="form-group">
+    <label for="idGeneroUsuario">Genero :</label>
+    <select class="form-control" id="idGeneroUsuario" name="idGeneroUsuario" title="Ingrese genero">
+        <?php
+        foreach($this->params[generoUsuario] as $key =>$value){
+            ?><option value="<?=$value["id_genero_usuario"]?>"><?=$value["nombre"]?></option><?php
+        }?>
+    </select>
+    </div>
+    <div class="form-group">
+    <label for="idCargoTrabajo">Cargo :</label>
+    <select class="form-control" id="idCargoTrabajo" name="idCargoTrabajo" title="Ingrese cargo">
+        <?php
+        foreach($this->params[cargoTrabajo] as $key =>$value){
+            ?><option value="<?=$value["id_cargo_trabajo"]?>"><?=$value["nombre"]?></option><?php
+        }?>
+    </select>
+    </div>    
+    <input class="btn btn-info" type="submit" value="Registrar"/>
+    
+</form>

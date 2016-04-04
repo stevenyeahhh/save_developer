@@ -29,5 +29,9 @@ class CandidatoEspecialModel {
     public function getCandidatoEspecialPorId($id) {
         return Singleton::getInstance()->db->selectQuery("SELECT id_candidato_especial, nombre FROM candidato_especial WHERE id_candidato_especial = '$id'");
     }
-
+    public function insertCandidatoEspecial() {
+        return $this->getDb()->insertQuery("CANDIDATO_ESPECIAL", 
+                "id_candidato_especial, nombre", 
+                "'$this->idCandidatoEspecial','$this->nombre'");
+    }
 }

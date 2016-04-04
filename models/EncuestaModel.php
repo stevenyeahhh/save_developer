@@ -11,7 +11,7 @@
  *
  * @author Emmanuel
  */
-class EncuestaModel {
+class EncuestaModel extends Model {
 
     private $idEncuesta;
     private $nombre;
@@ -26,11 +26,16 @@ class EncuestaModel {
     }
 
     public function selectEncuestaList() {
-        return $this->getDb()->query("SELECT id_encuesta, nombre, fecha_creacion, fecha_inicio_inscripcion, fecha_fin_inscripcion, fecha_inicio_votacion, fecha_fin_votacion FROM encuesta");
+        return $this->getDb()->query("SELECT id_encuesta, nombre, fecha_creacion, fecha_inicio_inscripcion, fecha_fin_inscripcion, fecha_inicio_votacion, fecha_fin_votacion FROM ENCUESTA");
     }
 
     public function getEncuestaPorId($id) {
-        return Singleton::getInstance()->db->selectQuery("SELECT id_encuesta, nombre, fecha_creacion, fecha_inicio_inscripcion, fecha_fin_inscripcion, fecha_inicio_votacion, fecha_fin_votacion FROM encuesta WHERE id_encuesta = '$id'");
+        return Singleton::getInstance()->db->query("SELECT id_encuesta, nombre, fecha_creacion, fecha_inicio_inscripcion, fecha_fin_inscripcion, fecha_inicio_votacion, fecha_fin_votacion FROM ENCUESTA WHERE id_encuesta = '$id'");
+    }
+    public function insertEncuesta() {
+        return $this->getDb()->insertQuery("ENCUESTA", 
+                "id_encuesta, nombre, fecha_creacion, fecha_inicio_inscripcion, fecha_fin_inscripcion, fecha_inicio_votacion, fecha_fin_votacion", 
+                "'$this->idEncuesta','$this->nombre','$this->fechaCreacion','$this->fechaInicioInscripcion','$this->fechaFinInscripcion','$this->fechaInicioVotacion','$this->fechaFinVotacion'");
     }
 
 }

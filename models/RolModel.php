@@ -29,5 +29,10 @@ class rolModel {
     public function getRolPorId($id) {
         return Singleton::getInstance()->db->selectQuery("SELECT id_rol, nombre FROM rol WHERE id_rol = '$id'");
     }
+    public function insertRol() {
+        return $this->getDb()->insertQuery("ROL", 
+                " id_rol, nombre ", 
+                "'$this->idRol','$this->nombre'");
+    }
 
 }

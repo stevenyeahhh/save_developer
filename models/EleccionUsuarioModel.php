@@ -11,7 +11,7 @@
  *
  * @author Emmanuel
  */
-class EleccionUsuarioModel {
+class EleccionUsuarioModel extends Model{
 
     private $idEleccion;
     private $idUsuario;
@@ -28,7 +28,32 @@ class EleccionUsuarioModel {
     }
 
     public function getEleccionUsuarioPorId($id) {
-        return Singleton::getInstance()->db->selectQuery("SELECT id_eleccion, id_usuario, id_encuesta, fecha_eleccion, eleccion_confirmada FROM eleccion_usuario WHERE id_eleccion = '$id'");
+        return Singleton::getInstance()->db->query("SELECT id_eleccion, id_usuario, id_encuesta, fecha_eleccion, eleccion_confirmada FROM ELECCION_USUARIO WHERE id_eleccion = '$id'");
     }
+    public function insertEleccionUsuario() {
+        return $this->getDb()->insertQuery("ELECCION_USUARIO", 
+                "id_usuario, id_encuesta", 
+                "'$this->idUsuario','$this->idEncuesta'");
+    }
+    function setIdEleccion($idEleccion) {
+        $this->idEleccion = $idEleccion;
+    }
+
+    function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
+    }
+
+    function setIdEncuesta($idEncuesta) {
+        $this->idEncuesta = $idEncuesta;
+    }
+
+    function setFechaEleccion($fechaEleccion) {
+        $this->fechaEleccion = $fechaEleccion;
+    }
+
+    function setEleccionConfirmada($eleccionConfirmada) {
+        $this->eleccionConfirmada = $eleccionConfirmada;
+    }
+
 
 }

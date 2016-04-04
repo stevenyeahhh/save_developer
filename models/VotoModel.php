@@ -29,4 +29,9 @@ class VotoModel {
     public function getVotoPorId($id) {
         return Singleton::getInstance()->db->selectQuery("SELECT id_voto, id_encuesta, id_candidato, id_estado_voto, fecha_votacion FROM voto WHERE id_voto = '$id'");
     }
+    public function insertVoto() {
+        return $this->getDb()->insertQuery("VOTO", 
+                " id_voto, id_encuesta, id_candidato, id_estado_voto, fecha_votacion", 
+                "'$this->idVoto','$this->idEncuesta','$this->idCandidato','$this->idEstadoVoto','$this->fechaVotacion'");
+    }
 }
